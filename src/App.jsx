@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from "react";
 import trashCan from "./images/trash_can.svg";
 
 export const App = () => {
+  const [todos, setTodos] = useState(["Todo1", "Todo2"]);
 
   return (
     <>
@@ -12,14 +13,14 @@ export const App = () => {
       </div>
       <div>
         <ul>
-          <div>
-            <li>Todo1</li>
-            <input type="image" src={trashCan} alt="削除" />
-          </div>
-          <div>
-            <li>Todo2</li>
-            <input type="image" src={trashCan} alt="削除" />
-          </div>
+          {todos.map((todo) => {
+            return (
+              <div key={todo}>
+                <li>{todo}</li>
+                <input type="image" src={trashCan} alt="削除" />
+              </div>
+            );
+          })}
         </ul>
       </div>
     </>
