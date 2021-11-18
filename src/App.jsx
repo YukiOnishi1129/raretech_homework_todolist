@@ -9,6 +9,9 @@ export const App = () => {
 
   const pressEnter = (event) => {
     if (event.key === 'Enter'){
+      // 空文字もしくはスペースのみのときは処理を抜ける
+      if (inputTodo === "" || !inputTodo.match(/\S/g)) return;
+
       const newTodos = [...todos, inputTodo];
       setTodos(newTodos)
       setInputTodo("")
