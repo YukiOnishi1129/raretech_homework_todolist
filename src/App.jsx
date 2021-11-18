@@ -9,7 +9,8 @@ export const App = () => {
 
   const pressEnter = (event) => {
     if (event.key === 'Enter'){
-      console.log(inputTodo)
+      const newTodos = [...todos, inputTodo];
+      setTodos(newTodos)
       setInputTodo("")
     }
   }
