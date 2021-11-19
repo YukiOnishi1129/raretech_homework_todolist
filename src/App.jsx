@@ -18,8 +18,8 @@ export const App = () => {
     }
   }
 
-  const onClickDelete = () => {
-    alert("削除です")
+  const onClickDelete = (index) => {
+    alert(`${index}削除です`)
   }
 
   return (
@@ -31,11 +31,12 @@ export const App = () => {
       </div>
       <div>
         <ul>
-          {todos.map((todo) => {
+          {todos.map((todo, index) => {
             return (
               <div key={todo}>
                 <li>{todo}</li>
-                <button><img onClick={onClickDelete} src={trashCan} alt="削除" /></button>
+                {/* 引数を渡した関数をonClickに指定すると画面がレンダリングされた際にonClickイベントが発火してしまうためアロー関数にして指定する */}
+                <button><img onClick={() => onClickDelete(index)} src={trashCan} alt="削除" /></button>
                 {/* <input type="image" src={trashCan} alt="削除" /> */}
               </div>
             );
