@@ -18,6 +18,10 @@ export const App = () => {
     }
   }
 
+  const onClickDelete = () => {
+    alert("削除です")
+  }
+
   return (
     <>
       <p>Todo List</p>
@@ -31,7 +35,8 @@ export const App = () => {
             return (
               <div key={todo}>
                 <li>{todo}</li>
-                <input type="image" src={trashCan} alt="削除" />
+                <button><img onClick={onClickDelete} src={trashCan} alt="削除" /></button>
+                {/* <input type="image" src={trashCan} alt="削除" /> */}
               </div>
             );
           })}
