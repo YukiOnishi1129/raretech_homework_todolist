@@ -1,5 +1,6 @@
 import React from "react";
+import styles from "./TitleArea.module.scss";
 
 export const TitleArea = () => {
-  return <p>Todo List</p>;
+  return <h2 className={styles.title}>Todo List</h2>;
 };
