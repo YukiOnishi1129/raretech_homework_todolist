@@ -1,30 +1,30 @@
 import React from "react";
-
-import trashCan from "../images/trash_can.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 
 export const TodoArea = (props) => {
   const { todos, onClickDelete } = props;
 
   return (
-    <div>
+    <>
       <ul>
         {todos.map((todo, index) => {
           return (
-            <div key={todo}>
-              <li>{todo}</li>
-              {/* 引数を渡した関数をonClickに指定すると画面がレンダリングされた際にonClickイベントが発火してしまうためアロー関数にして指定する */}
-              <button>
-                <img
+            <div key={todo} className="todo-list">
+              <li className="list-low">
+                {todo}
+                {/* 引数を渡した関数をonClickに指定すると画面がレンダリングされた際にonClickイベントが発火してしまうためアロー関数にして指定する */}
+                <FontAwesomeIcon
                   onClick={() => onClickDelete(index)}
-                  src={trashCan}
+                  icon={faTrashAlt}
                   alt="削除"
+                  className="icon"
                 />
-              </button>
-              {/* <input type="image" src={trashCan} alt="削除" /> */}
+              </li>
             </div>
           );
         })}
       </ul>
-    </div>
+    </>
   );
 };

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
 import { InputArea } from "./components/InputArea";
-import { TitleArea } from "./components/TitleArea";
 import { TodoArea } from "./components/TodoArea";
+
+import "./CSS/style.scss";
 
 export const App = () => {
   const [inputTodo, setInputTodo] = useState("");
@@ -29,13 +30,16 @@ export const App = () => {
 
   return (
     <>
-      <TitleArea />
+      <h1 className="title">Todo List</h1>
+      <h2 className="sub-title">ADD TODO</h2>
+      <div className="wrapper">
       <InputArea
         inputTodo={inputTodo}
         onChange={onChangeInputTodo}
         onKeyPress={pressEnter}
       />
-      <TodoArea todos={todos} onClickDelete={onClickDelete}/>
+      <TodoArea todos={todos} onClickDelete={onClickDelete} />
+      </div>
     </>
   );
 };
