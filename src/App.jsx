@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import trashCan from "./images/trash_can.svg";
+
+import { InputArea } from "./components/InputArea";
+import { TodoArea } from "./components/TodoArea";
+
+import "./CSS/style.scss";
 
 export const App = () => {
   const [inputTodo, setInputTodo] = useState("");
@@ -26,36 +30,15 @@ export const App = () => {
 
   return (
     <>
-      <p>Todo List</p>
-      <div>
-        <p>ADD TODO</p>
-        <input
-          type="text"
-          placeholder="New Todo"
-          value={inputTodo}
-          onChange={onChangeInputTodo}
-          onKeyPress={pressEnter}
-        />
-      </div>
-      <div>
-        <ul>
-          {todos.map((todo, index) => {
-            return (
-              <div key={todo}>
-                <li>{todo}</li>
-                {/* 引数を渡した関数をonClickに指定すると画面がレンダリングされた際にonClickイベントが発火してしまうためアロー関数にして指定する */}
-                <button>
-                  <img
-                    onClick={() => onClickDelete(index)}
-                    src={trashCan}
-                    alt="削除"
-                  />
-                </button>
-                {/* <input type="image" src={trashCan} alt="削除" /> */}
-              </div>
-            );
-          })}
-        </ul>
+      <h1 className="title">Todo List</h1>
+      <h2 className="sub-title">ADD TODO</h2>
+      <div className="wrapper">
+      <InputArea
+        inputTodo={inputTodo}
+        onChange={onChangeInputTodo}
+        onKeyPress={pressEnter}
+      />
+      <TodoArea todos={todos} onClickDelete={onClickDelete} />
       </div>
     </>
   );

@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+
+body {
+  /* margin: 0; */
+  font-family: "Times New Roman", "Playfair Display", serif;
+  background-color: #1A8080;
+  color: #fff;
+}
+
+.title {
+  margin: 60px 0px 40px;
+  text-align: center;
+  font-size: 48px;
+}
+
+.sub-title {
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.wrapper{
+  width: 60%;
+  margin: 30px auto;
+  text-align: center;
+}
+
+input {
+  width: 60%;
+  height: 50px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 20px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);  
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+  }
+}
+
+ul {
+  text-align: center;
+  list-style-type: none;
+  // デフォルトで効いているpadding-leftを消すためにpadding: 0を指定
+  padding: 0;
+}
+
+.todo-list {
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.list-low {
+  display: flex;
+  position: relative;
+  align-items: center;
+  height: 50px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.3);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.icon {
+  position: absolute;
+  right: 20px;
+  color: #ff9900;
+  font-weight: 400;
+  cursor: pointer;
+}
