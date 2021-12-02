@@ -9,7 +9,8 @@
 /coverage
 
 # production
-/build
+## ここをコメントアウトした
+# /build
 
 # misc
 .DS_Store
