@@ -102,11 +102,16 @@ export const App = () => {
     }
   };
 
-  // 削除機能
+  /**
+   * 削除機能
+   * @param {*} taskId
+   */
   const onClickDelete = (taskId) => {
-    // 削除ボタンが押されたtaskのIdに一致しないtaskで新たにtodoListを作成する
-    const deletedTodos = todos.filter((todos) => todos.id !== taskId);
-    setTodos(deletedTodos);
+    if (window.confirm("Todoを削除しますか？")) {
+      // 削除ボタンが押されたtaskのIdに一致しないtaskで新たにtodoListを作成する
+      const deletedTodos = todos.filter((todos) => todos.id !== taskId);
+      setTodos(deletedTodos);
+    }
   };
 
   return (
