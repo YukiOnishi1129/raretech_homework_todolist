@@ -1,64 +1,68 @@
+/**
+ * App
+ * @package src
+ */
 import React, { useState } from "react";
-
+/* components */
 import { InputArea } from "./components/InputArea";
 import { TodoArea } from "./components/TodoArea";
 /* constants */
-import { INITIAL_TASKS } from "./constants/data";
-
+import { INITIAL_TASKS, INITIAL_TASKS_LENGTH } from "./constants/data";
+/* styles */
 import "./CSS/style.scss";
 
+/**
+ * App
+ * @returns
+ */
 export const App = () => {
-  // Todo検索時に各Todoに表示非表示の判定をするフラグが必要となったため、Todoのデータ型を連想配列にした
-  // const initialTasks = [
-  //   {
-  //     id: 1,
-  //     title: "Todo1",
-  //     todoShowFlag: true,
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Todo2",
-  //     todoShowFlag: true,
-  //   },
-  // ];
-
   // task追加時にIdを連番にするために定義
   // 初期のtaskが2つあるため2から始める
   // CATION   !!!!：テストのためのデータを消す場合は初期値を0にする!!!!!!!
-  const [currentId, setCurrentId] = useState(2);
+  const [currentId, setCurrentId] = useState(INITIAL_TASKS_LENGTH);
   // 新しいtodoの入力値を保持するstate
   const [inputTodo, setInputTodo] = useState("");
 
   // 表示するtodoListを保持するstate
   // 検索機能を実装する前の名残
-  // const [todos, setTodos] = useState(["Todo1", "Todo2"]);
   // TodoListの初期値を読み込み
   const [todos, setTodos] = useState(INITIAL_TASKS);
 
   // 検索キーワードを保持するstate
   const [searchKeyword, setSearchKeyword] = useState("");
 
-  // todo追加機能
+  /**
+   * todo追加機能
+   * @param {*} event
+   * @returns
+   */
   const onChangeInputTodo = (event) => setInputTodo(event.target.value);
 
+  /**
+   *  todo追加処理
+   * @param {*} event
+   * @returns
+   */
   const pressEnter = (event) => {
     if (event.key === "Enter") {
       // 空文字もしくはスペースのみのときは処理を抜ける
       if (inputTodo === "" || !inputTodo.match(/\S/g)) return;
+      const nextTodoId = currentId + 1;
       // 新しく追加するためのtaskを定義する
-      const newTask = {
-        id: currentId + 1,
-        title: inputTodo,
-        todoShowFlag: true,
-      };
-
-      const newTodos = [...todos, newTask];
+      const newTodos = [
+        ...todos,
+        {
+          id: nextTodoId,
+          title: inputTodo,
+          todoShowFlag: true,
+        },
+      ];
       setTodos(newTodos);
 
       // inputFormを空にする
       setInputTodo("");
       // 次のtaskのidが重複しないように +1しておく
-      setCurrentId(currentId + 1);
+      setCurrentId(nextTodoId);
     }
   };
 
@@ -71,13 +75,20 @@ export const App = () => {
   //   setTodos(searchedTodos);
   // };
 
-  // todoの検索ワードを受け取る関数
+  /**
+   * todoの検索ワードを受け取る関数
+   * @param {*} event
+   */
   const onChangeSearchTodo = (event) => {
     setSearchKeyword(event.target.value);
+    // 検索処理
+    changeShowFlag(event.target.value);
   };
 
-  // 検索ワードに一致したTodoのshowFlagを変更する関数
-  const changeShowFlag = () => {
+  /**
+   * 検索ワードに一致したTodoのshowFlagを変更する関数
+   */
+  const changeShowFlag = (searchKeyword) => {
     //　先頭一致の正規表現を作成
     const regexp = new RegExp("^" + searchKeyword, "i");
 
@@ -90,9 +101,6 @@ export const App = () => {
       }
     }
   };
-
-  // showFlagを変更する関数を実行
-  changeShowFlag();
 
   // 削除機能
   const onClickDelete = (taskId) => {
@@ -110,9 +118,13 @@ export const App = () => {
           inputTodo={inputTodo}
           onChange={onChangeInputTodo}
           onKeyPress={pressEnter}
-          placeholder={"New Todo"}
+          placeholder="New Todo"
         />
-        <InputArea onChange={onChangeSearchTodo} placeholder={"Search Todo"} />
+        <InputArea
+          inputTodo={searchKeyword}
+          onChange={onChangeSearchTodo}
+          placeholder="Search Todo"
+        />
         <TodoArea todos={todos} onClickDelete={onClickDelete} />
       </div>
     </>

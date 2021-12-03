@@ -13,3 +13,5 @@ export const INITIAL_TASKS = [
     todoShowFlag: true,
   },
 ];
+
+export const INITIAL_TASKS_LENGTH = INITIAL_TASKS.length;
