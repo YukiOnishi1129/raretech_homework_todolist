@@ -1,4 +1,9 @@
 /**
+ * data
+ * @package constants
+ */
+
+/**
  * Todo初期値
  */
 export const INITIAL_TASKS = [
@@ -14,4 +19,7 @@ export const INITIAL_TASKS = [
   },
 ];
 
+/**
+ * Todoリスト数の初期値
+ */
 export const INITIAL_TASKS_LENGTH = INITIAL_TASKS.length;
