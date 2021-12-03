@@ -2,23 +2,25 @@ import React, { useState } from "react";
 
 import { InputArea } from "./components/InputArea";
 import { TodoArea } from "./components/TodoArea";
+/* constants */
+import { INITIAL_TASKS } from "./constants/data";
 
 import "./CSS/style.scss";
 
 export const App = () => {
   // Todo検索時に各Todoに表示非表示の判定をするフラグが必要となったため、Todoのデータ型を連想配列にした
-  const initialTasks = [
-    {
-      id: 1,
-      title: "Todo1",
-      todoShowFlag: true,
-    },
-    {
-      id: 2,
-      title: "Todo2",
-      todoShowFlag: true,
-    },
-  ];
+  // const initialTasks = [
+  //   {
+  //     id: 1,
+  //     title: "Todo1",
+  //     todoShowFlag: true,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Todo2",
+  //     todoShowFlag: true,
+  //   },
+  // ];
 
   // task追加時にIdを連番にするために定義
   // 初期のtaskが2つあるため2から始める
@@ -31,7 +33,7 @@ export const App = () => {
   // 検索機能を実装する前の名残
   // const [todos, setTodos] = useState(["Todo1", "Todo2"]);
   // TodoListの初期値を読み込み
-  let [todos, setTodos] = useState(initialTasks);
+  const [todos, setTodos] = useState(INITIAL_TASKS);
 
   // 検索キーワードを保持するstate
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -49,7 +51,6 @@ export const App = () => {
         title: inputTodo,
         todoShowFlag: true,
       };
-
 
       const newTodos = [...todos, newTask];
       setTodos(newTodos);
